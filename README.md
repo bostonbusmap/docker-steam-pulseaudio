@@ -39,7 +39,7 @@ Instructions
 
 1. Build the container
 
-        sudo docker build -t steam .
+        docker build -t steam .
 
 1. Create an entry in your .ssh/config file for easy access. It should look like this:
         
@@ -52,7 +52,7 @@ Instructions
 
 1. Run the container and forward the appropriate ports
 
-        sudo docker run -d -p 127.0.0.1:2222:22 steam
+        docker run -d -p 127.0.0.1:2222:22 steam
 
 1. Connect via SSH and launch Steam using the provided PulseAudio wrapper script
 
