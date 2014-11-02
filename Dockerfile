@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:12.04
 MAINTAINER Joshua Lund
 
 # Tell debconf to run in non-interactive mode
@@ -14,7 +14,7 @@ RUN dpkg -i /tmp/steam.deb || true
 RUN apt-get install -fy
 
 # Other Steam dependencies
-RUN sudo dpkg --add-architecture i386
+RUN apt-get install -y ia32-libs
 RUN apt-get update
 RUN apt-get install -y libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libc6:i386
 
