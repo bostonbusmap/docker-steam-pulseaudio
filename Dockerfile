@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
 MAINTAINER Joshua Lund
 
 # Tell debconf to run in non-interactive mode
@@ -18,6 +18,9 @@ RUN apt-get install -y openssh-server
 
 # Create OpenSSH privilege separation directory
 RUN mkdir /var/run/sshd
+
+# Overwrite sshd_config with our own file
+ADD sshd_config /etc/ssh/
 
 # Install Pulseaudio
 RUN apt-get install -y pulseaudio
