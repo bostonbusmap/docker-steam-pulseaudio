@@ -1,7 +1,7 @@
-Docker! Chrome! PulseAudio!
+Docker! Steam! PulseAudio!
 ===========================
 
-Run Google Chrome inside an isolated [Docker](http://www.docker.io) container on your Linux desktop! See its sights via X11 forwarding! Hear its sounds through the magic of PulseAudio and SSH tunnels!
+Run Steam inside an isolated [Docker](http://www.docker.io) container on your Linux desktop! See its sights via X11 forwarding! Hear its sounds through the magic of PulseAudio and SSH tunnels!
 
 
 Instructions
@@ -27,7 +27,7 @@ Instructions
 
 1. Clone this repository and get right in there
 
-        git clone https://github.com/jlund/docker-chrome-pulseaudio.git && cd docker-chrome-pulseaudio
+        git clone https://github.com/jlund/docker-steam-pulseaudio.git && cd docker-steam-pulseaudio
 
 1. Generate an SSH public key, if you don't already have one
 
@@ -39,12 +39,12 @@ Instructions
 
 1. Build the container
 
-        sudo docker build -t chrome .
+        sudo docker build -t steam .
 
 1. Create an entry in your .ssh/config file for easy access. It should look like this:
         
-        Host docker-chrome
-          User      chrome
+        Host docker-steam
+          User      steam
           Port      2222
           HostName  127.0.0.1
           RemoteForward 64713 localhost:4713
@@ -52,11 +52,11 @@ Instructions
 
 1. Run the container and forward the appropriate ports
 
-        sudo docker run -d -p 127.0.0.1:2222:22 chrome
+        sudo docker run -d -p 127.0.0.1:2222:22 steam
 
-1. Connect via SSH and launch Chrome using the provided PulseAudio wrapper script
+1. Connect via SSH and launch Steam using the provided PulseAudio wrapper script
 
-        ssh docker-chrome chrome-pulseaudio-forward
+        ssh docker-steam steam-pulseaudio-forward
 
 1. Go watch Hulu, or whatever
 
