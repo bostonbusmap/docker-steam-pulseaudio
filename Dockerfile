@@ -42,11 +42,9 @@ RUN chown -R steam:steam /home/steam/.ssh
 
 # Set up the launch wrapper
 RUN echo 'export PULSE_SERVER="tcp:localhost:64713"' >> /usr/local/bin/steam-pulseaudio-forward
+RUN echo 'export DISPLAY="unix:0.0"' >> /usr/local/bin/steam-pulseaudio-forward
 RUN echo 'steam' >> /usr/local/bin/steam-pulseaudio-forward
 RUN chmod 755 /usr/local/bin/steam-pulseaudio-forward
-
-ENV DISPLAY unix:0.0
-
 
 # Start SSH so we are ready to make a tunnel
 ENTRYPOINT ["/usr/sbin/sshd",  "-D"]
