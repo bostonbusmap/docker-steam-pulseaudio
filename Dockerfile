@@ -15,8 +15,10 @@ RUN apt-get install -fy
 
 # Other Steam dependencies
 RUN apt-get install -y ia32-libs
-RUN apt-get update
 RUN apt-get install -y libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libc6:i386
+
+# Testing 3D
+RUN apt-get install -y mesa-utils
 
 # Install OpenSSH
 RUN apt-get install -y openssh-server
@@ -43,8 +45,12 @@ RUN echo 'export PULSE_SERVER="tcp:localhost:64713"' >> /usr/local/bin/steam-pul
 RUN echo 'steam' >> /usr/local/bin/steam-pulseaudio-forward
 RUN chmod 755 /usr/local/bin/steam-pulseaudio-forward
 
+ENV DISPLAY unix:0.0
+
+
 # Start SSH so we are ready to make a tunnel
 ENTRYPOINT ["/usr/sbin/sshd",  "-D"]
+VOLUME ["/tmp/.X11-unix", "/tmp/.X11-unix"]
 
 # Expose the SSH port
 EXPOSE 22
