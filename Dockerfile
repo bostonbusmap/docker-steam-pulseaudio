@@ -13,6 +13,11 @@ RUN wget http://media.steampowered.com/client/installer/steam.deb -P /tmp/
 RUN dpkg -i /tmp/steam.deb || true
 RUN apt-get install -fy
 
+# Other Steam dependencies
+RUN sudo dpkg --add-architecture i386
+RUN apt-get update
+RUN apt-get install -y libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 libc6:i386
+
 # Install OpenSSH
 RUN apt-get install -y openssh-server
 
